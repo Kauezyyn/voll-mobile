@@ -1,39 +1,26 @@
-import { VStack, Text, ScrollView, Image } from "native-base";
+import { Text, ScrollView, Box, VStack } from "native-base";
+import { CardConsulta } from "../componentes/CardConsulta";
 import { EntradaTexto } from "../componentes/EntradaTexto";
 import { Botao } from "../componentes/Botao";
-import { CardConsulta } from "../componentes/CardConsulta";
-import { Titulo } from "../componentes/titulo";
-import Logo from '../assets/Logo.png';
-
-
 
 export default function Explorar() {
     return (
-
-        <ScrollView flex={1}>
-            <VStack p='7'>
-                <VStack p={5} w="100%" borderRadius='lg' shadow='2' bgColor='white'>
-                    <EntradaTexto placeholder="Digite sua especialidade"></EntradaTexto>
-                    <EntradaTexto placeholder="Digite sua localização"></EntradaTexto>
-
-                    <Botao>Buscar</Botao>
-                </VStack>
-
-                <Titulo color='blue.500' alignSelf='center' mb={5}>Resultado da Busca</Titulo>
-
-                {[1, 2, 3].map((_, index) => (
-                    <VStack flex={1} alignItems='center' justifyContent='center' bgColor='white' mb={4} key={index}>
-                        <CardConsulta
-                            nome="Dr .Roberto"
-                            especialidade="Urologista"
-                            foto="https://github.com/robertomoraesjunior.png"
-                        />
+        <ScrollView flex={1} bgColor="white">
+            <VStack flex={1} alignItems="flex-start" justifyContent="flex-start" p={5}>
+                <Box w="100%" borderRadius="lg" p={3} mt={5} shadow="1" borderRightRadius="md">
+                    <EntradaTexto placeholder="Digite a especialidade" />
+                    <EntradaTexto placeholder="Digite sua localização" />
+                    <Botao mt={3} mb={3}>
+                        Buscar
+                    </Botao>
+                </Box>
+                <Text color="blue.500" fontSize={25} textAlign="center" alignSelf="center" mb={5} mt={3}>Resultado da Busca</Text>
+                {[1, 2, 3, 4].map((_, index) => (
+                    <VStack flex={1} w="100%" alignItems="flex-start" bgColor="white" key={index} mb={10}>
+                        <CardConsulta especialidade="Angiologista" nome="Dra. Ana Lúcia" foto="https://github.com/arthurlmr2004.png" />
                     </VStack>
-
                 ))}
-
-
             </VStack>
         </ScrollView>
-    )
+    );
 }

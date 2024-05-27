@@ -1,49 +1,49 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
 import Principal from "./Principal";
 import Consultas from "./Consultas";
-import { background, color } from "native-base/lib/typescript/theme/styled-system";
 import Perfil from "./Perfil";
 import Explorar from "./Explorar";
-import { Icon } from "native-base";
 
 const Tab = createBottomTabNavigator();
-const screenOptions = {
+
+const screenOption = {
     tabBarStyle: {
         backgroundColor: "#002851"
     },
     tabBarActiveTintColor: "#339cff",
     tabBarInactiveTintColor: "#FFF"
-
 }
+
 const tabs = [
     {
-        name: "inicio",
+        name: 'Principal',
         component: Principal,
-        icon: "home"
+        icon: 'home'
     },
     {
-        name: "Consulta",
+        name: 'Consultas',
         component: Consultas,
-        icon: "calendar"
+        icon: 'calendar'
     },
     {
-        name: "Explorar",
-        component: Explorar,
-        icon: "search"
-    },
-    {
-        name: "Perfil",
+        name: 'Perfil',
         component: Perfil,
-        icon: "person"
+        icon: 'person'
+    },
+    {
+        name: 'Explorar',
+        component: Explorar,
+        icon: 'search'
     }
-]
-
+];
 
 export default function Tabs() {
     return (
-        <Tab.Navigator screenOptions={screenOptions}>
+        <Tab.Navigator
+            screenOptions={screenOption}
+        >
             {tabs.map((tab) => (
                 <Tab.Screen
                     key={tab.name}
@@ -52,12 +52,11 @@ export default function Tabs() {
                     options={{
                         headerShown: false,
                         tabBarIcon: ({ color, size }) => (
-                            <Ionicons name={tab.icon} color={color} size={size}/>
-                            )
+                            <Ionicons name={tab.icon} color={color} size={size} />
+                        )
                     }}
                 />
-            ))
-            }
+            ))}
         </Tab.Navigator>
     )
 }
