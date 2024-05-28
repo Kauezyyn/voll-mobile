@@ -17,7 +17,7 @@ export default function Login({ navigation } : any) {
   const toast = useToast()
 
   useEffect(() => {
-    //AsyncStorage.removeItem('token')
+    AsyncStorage.removeItem('token')
     async function verificarLogin(){
       const token = await AsyncStorage.getItem('token')
       
@@ -35,11 +35,11 @@ export default function Login({ navigation } : any) {
     if(resultado){
       const { token } = resultado
       AsyncStorage.setItem('token', token)
-      AsyncStorage.removeItem('token')
+
 
       const tokenDecodificado = jwtDecode(token) as any
       const pacienteId = tokenDecodificado.id
-      AsyncStorage.setItem('pacientId', pacienteId)
+      AsyncStorage.setItem('pacienteId', pacienteId)
       navigation.replace('Tabs')
     }
     else{

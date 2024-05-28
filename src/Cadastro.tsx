@@ -68,7 +68,7 @@ export default function Cadastro({ navigation }: any) {
       },
       senha: dados.senha,
       telefone: dados.telefone,
-      possuiPlanoSaude: planos.length > 0,
+      possuiPlanoSaude: planos.length > 1,
       planosSaude: planos,
       imagem: dados.imagem
     })
@@ -82,6 +82,7 @@ export default function Cadastro({ navigation }: any) {
       navigation.replace('Login');
     }
     else {
+      console.log('erro ao fazer cadastro')
       toast.show({
         title: 'Erro ao cadastrar',
         description: 'Verifique os dados e tente novamente',
