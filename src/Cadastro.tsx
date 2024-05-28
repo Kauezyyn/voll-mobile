@@ -13,7 +13,9 @@ export default function Cadastro({ navigation }: any) {
   const [planos, setPlanos] = useState([] as number[])
   const toast = useToast()
 
+
   function avancarSecao(){
+    if(todosCamposPreenchidos()){
     if(numSecao < secoes.length - 1){
       setNumSecao(numSecao+1)
     }
@@ -22,8 +24,15 @@ export default function Cadastro({ navigation }: any) {
       console.log(planos)
       cadastrar()
     }
-  }
+  }else{
+    toast.show({
+      title: 'Erro',
+      description: 'Por favor, preencha todos os campos.',
+      backgroundColor: 'red.500'
 
+    })
+  }
+}
   function voltarSecao(){
     if(numSecao > 0){
       setNumSecao(numSecao - 1)
@@ -33,6 +42,17 @@ export default function Cadastro({ navigation }: any) {
   function atualizarDados(id: string, valor: string){
     setDados({...dados, [id]: valor})
   }
+  function todosCamposPreenchidos(){
+    const campos = secoes[numSecao]?.entradaTexto || [];
+    for(const campo of campos){
+      if(!dados[campo.name]){
+        return false;
+      }
+    }  
+    return true
+  }
+
+
 
   async function cadastrar(){
     const resultado = await cadastrarPaciente({
@@ -53,7 +73,7 @@ export default function Cadastro({ navigation }: any) {
       imagem: dados.imagem
     })
 
-    if (resultado) {
+    if (resultado != '' && planos.length > 0) {
       toast.show({
         title: 'Cadastro realizado com sucesso',
         description: 'Você já pode fazer login',
@@ -86,7 +106,7 @@ export default function Cadastro({ navigation }: any) {
                 placeholder={entrada.placeholder} 
                 key={entrada.id} 
                 secureTextEntry={entrada.secureTextEntry}
-                value={dados[entrada.name]}
+                value={dados[entrada.name] || ''}
                 onChangeText={(text) => atualizarDados(entrada.name, text)}
               />
             )
