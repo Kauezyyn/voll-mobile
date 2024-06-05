@@ -69,7 +69,7 @@ async function cancelar(consultaId: string) {
   return (
     <ScrollView p="5">
       <Titulo color="blue.500">Minhas consultas</Titulo>
-      <Botao mt={5} mb={5}>Agendar nova consulta</Botao>
+      <Botao mt={5} mb={5} onPress={() => navigation.navigate('Explorar')}>Agendar nova consulta</Botao>
 
       <Titulo color="blue.500" fontSize="lg" alignSelf="flex-start" mb={2}>Próximas consultas</Titulo>
       {consultasProximas.map((consulta) =>

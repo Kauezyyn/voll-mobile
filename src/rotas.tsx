@@ -25,6 +25,7 @@ export default function Rotas() {
         <Tab.Screen
           name="Agendamento" component={Agendamento} options={{ headerShown: false }}
         />
+        
       </Tab.Navigator>
     </NavigationContainer>
   )
