@@ -1,4 +1,4 @@
-import api from "./api"
+import api from "./api";
 
 export async function buscarEspecialistaPorEstado(estado: string, especialidade: string) {
     try {
@@ -7,13 +7,9 @@ export async function buscarEspecialistaPorEstado(estado: string, especialidade:
                 estado,
                 especialidade
             }
-        })
-        return resultado.data
-
+        });
+        return resultado.data;
     } catch (error) {
-
-        console.log(error)
-
+        console.log(error);
     }
-
 }
